@@ -7,9 +7,11 @@ typealias compareGuessReturn = (Int, Bool)
 
 let randomNumberMaker = GKRandomDistribution.init(lowestValue: 0, highestValue: 99)
 
-let winningNumbers = (randomNumberMaker.nextInt(),randomNumberMaker.nextInt(),randomNumberMaker.nextInt(),randomNumberMaker.nextInt(),randomNumberMaker.nextInt(),randomNumberMaker.nextInt())
+//let winningNumbers = (randomNumberMaker.nextInt(),randomNumberMaker.nextInt(),randomNumberMaker.nextInt(),randomNumberMaker.nextInt(),randomNumberMaker.nextInt(),randomNumberMaker.nextInt())
 
-func play(thingOne: Guess, thingTwo: Guess) -> compareGuessReturn
+let winningNumbers = (0, 1, 2, 3, 4, 5)
+
+func checkGuesses(thingOne: Guess, thingTwo: Guess) -> compareGuessReturn
 {
     var numberCorrect = 0
     var gotPowerball = false
@@ -60,7 +62,16 @@ func returnWinnings(tenthWinningsPot: Int, winningCheck: compareGuessReturn) -> 
     }
 }
 
-var userGuess = Guess(0,1,2,3,4,5)
-let tenthWinningsPot = 1
-let result = play(thingOne: userGuess, thingTwo: winningNumbers)
-let winnings = returnWinnings(tenthWinningsPot: tenthWinningsPot, winningCheck: result)
+func play(one: Int, two: Int, three: Int, four: Int, five: Int, six: Int) -> Int
+{
+    let userGuess = (one, two, three, four, five, six)
+    let winningsPot = 10000
+    let result = checkGuesses(thingOne: userGuess, thingTwo: winningNumbers)
+    return returnWinnings(tenthWinningsPot:(winningsPot / 10), winningCheck: result)
+}
+
+
+play(one: 1, two: 1, three: 1, four: 1, five: 1, six: 1)
+
+
+
